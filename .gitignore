@@ -33,7 +33,7 @@ crfnet/archive/
 crfnet/experiments/
 
 ############## CONFIG FILES ############
-crfnet/configs/*
+#crfnet/configs/*
 crfnet/configs/neural_filter/*
 
 ############## Exceptions ##############
