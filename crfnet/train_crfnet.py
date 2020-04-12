@@ -261,7 +261,7 @@ def main():
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY,"configs/Exp1.cfg"))
+    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY,"configs/Exp2.cfg"))
     args = parser.parse_args()
 
     if not os.path.exists(args.config):
