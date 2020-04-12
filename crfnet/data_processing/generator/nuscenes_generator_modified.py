@@ -623,7 +623,7 @@ if __name__ == "__main__":
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY, "../../configs/Exp2.cfg"))
+    parser.add_argument('--config', type=str, default=os.path.join(FILE_DIRECTORY, "../../configs/GeneratorTest.cfg"))
     parser.add_argument('--debug', default=False, action='store_true')
     parser.add_argument('--sample', type=int, default=0)
     parser.add_argument('--bboxes', dest='bboxes', action='store_true')
@@ -707,7 +707,7 @@ if __name__ == "__main__":
     data_generator = NuscenesGenerator(nusc,
                                         scene_indices=None,
                                         category_mapping=cfg.category_mapping,
-                                        transform_generator=transform_generator,
+                                        #transform_generator=transform_generator,
                                         shuffle_groups=False,
                                         compute_anchor_targets=anchor_targets_bbox,
                                         compute_shapes=guess_shapes,
@@ -731,7 +731,7 @@ if __name__ == "__main__":
         # assert img.shape[2] == len(common_args['channels'])
 
         # Turn data into vizualizable format
-        viz = create_imagep_visualization(img, draw_circles=False, cfg=cfg, radar_lines_opacity=0.9)
+        viz = create_imagep_visualization(img, draw_circles=False, cfg=cfg, radar_lines_opacity=0.0)
 
         font                   = cv2.FONT_HERSHEY_SIMPLEX
         fontScale              = 0.4
