@@ -722,6 +722,7 @@ if __name__ == "__main__":
 
         # Get the data
         inputs, targets = data_generator[i]
+        print(inputs.shape)
         img = inputs[0]
         img = preprocess_image_inverted(img)
         ann = data_generator.load_annotations(i)
@@ -731,7 +732,7 @@ if __name__ == "__main__":
         # assert img.shape[2] == len(common_args['channels'])
 
         # Turn data into vizualizable format
-        viz = create_imagep_visualization(img, draw_circles=False, cfg=cfg, radar_lines_opacity=0.0)
+        viz = create_imagep_visualization(img, draw_circles=True, cfg=cfg, radar_lines_opacity=0.0)
 
         font                   = cv2.FONT_HERSHEY_SIMPLEX
         fontScale              = 0.4
