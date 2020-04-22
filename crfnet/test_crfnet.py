@@ -168,6 +168,8 @@ if __name__ == '__main__':
         os.makedirs(save_path)
 
     # iterating over all samples in the generator and create the predictions
+
+    timeList = []
     for i in progressbar.progressbar(range(generator.size()), prefix='Running network: '):
         if use_multiprocessing:
             inputs, _ = next(val_generator)
@@ -181,11 +183,13 @@ if __name__ == '__main__':
         viz_image = create_imagep_visualization(viz_image, cfg=cfg)
 
         # run network
+        startTime = time.time()
         if cfg.distance_detection:
             boxes, scores, labels, dists = prediction_model.predict_on_batch(inputs)
         else:
             boxes, scores, labels = prediction_model.predict_on_batch(inputs)[:3]
-        
+        timeList.append(time.time()-startTime)
+
         selection = np.where(scores > score_threshold)[1]
         boxes = boxes[:,selection,:]
         scores = scores[:,selection]
@@ -203,3 +207,5 @@ if __name__ == '__main__':
         if args.render: cv2.imshow('Prediction', viz_image)
         cv2.imwrite(save_path + str(i).zfill(4) + '.png', viz_image)
         cv2.waitKey(1)
+
+    print("Time per image (s): ", sum(timeList) / generator.size())
